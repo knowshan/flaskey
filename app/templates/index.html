@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div id="mainframe">
+  <div id="welcome">
+    Welcome {{ user_name }}!
+  </div>
+  <div id="text">
+    <p>
+      Click <a href="{{ url_for('new') }}">here</a> to submit a new SSH public key. This key will allow you to SCP local files using following command.
+    </p> 
+  <span class="command">
+    {{ ssh_command_msg }}
+  </span>
+</div>
+
+{% endblock %}

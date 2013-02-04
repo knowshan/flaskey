@@ -1,0 +1,32 @@
+#errormsg {
+  border-width: 2px;
+  border-color: #FF0000;
+  border-style: solid;
+  padding: 5px;
+}
+
+#mainframe {
+  padding: 2px;
+  margin-left: 50px;
+
+}
+
+#welcome {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+#sshtext {
+  font-size: 20px;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.command {
+  background-color: #000000;
+  color: #00CC00;
+}
+
+.marpad {
+  margin-bottom: 10px;
+}

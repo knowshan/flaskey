@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div id="mainframe">
+  Your SSH public key has been added successfully. 
+  You can SCP files using following command: <br />
+  <span class="command"> {{ ssh_command_msg }} </span>
+  </span>
+</div>
+{% endblock %}

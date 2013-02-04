@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div id="mainframe">
+
+<p />
+{# Display errors #}
+{% with errors = get_flashed_messages(category_filter=["error"]) %}
+{%- for msg in errors %}
+<span id="errormsg">
+  {{ msg }}
+{% endfor %}
+</span>
+{% endwith %}
+<p /> 
+{# Show Form #}
+<form name="keyfor" action="submit" method="post">
+     <div class="marpad"> <span id="sshtext"> {{ form.ssh_key.label }} </span> </div>
+     {{ form.ssh_key(cols="80", rows="10") }} 
+   </p>
+  <input type="submit" value="Submit"/>
+</form>
+
+</div>
+{% endblock %}
