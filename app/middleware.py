@@ -3,7 +3,7 @@ class RemoteUserMiddleware(object):
   def __init__(self, app):
     self.app = app
   def __call__(self, environ, start_response):
-    user = environ.pop('HTTP_X_PROXY_REMOTE_USER', None)
-    environ['REMOTE_USER'] = user
+    user = environ.pop('HTTP_REMOTE_USER', None)
+    environ['HTTP_REMOTE_USER'] = user
     return self.app(environ, start_response)
 

@@ -11,6 +11,7 @@ from functools import wraps
 
 # login_required comes from: http://flask.pocoo.org/docs/patterns/viewdecorators/
 def login_required(f):
+  """ Check g.user value and return 'index' page if None (user not logged in). """
   @wraps(f)
   def decorated_function(*args, **kwargs):
     if g.user is None:
@@ -21,15 +22,16 @@ def login_required(f):
 
 @app.before_request
 def _get_user():
-  if request.environ.get('REMOTE_USER'):
-    g.user = request.environ.get('REMOTE_USER')
+  """ Set g.user to HTTP_REMOTE_USER """
+  if request.environ.get('HTTP_REMOTE_USER'):
+    g.user = request.environ.get('HTTP_REMOTE_USER')
   else:
     g.user = None
-  g.user = 'Pavgi'
 
 
 @app.route('/keys')
 def index():
+  """ Return index template """
   ssh_command_msg = app.config['SSH_COMMAND_MSG']
   user_name = g.user
   return render_template('index.html', title="Home", user_name=user_name, ssh_command_msg=ssh_command_msg)
@@ -38,6 +40,7 @@ def index():
 @app.route('/keys/new', methods=['GET'])
 @login_required
 def new():
+  """ Return key submission form """
   form = KeyForm()
   user_name = g.user
   d = dict(user_name=user_name)
@@ -48,6 +51,7 @@ def new():
 @app.route('/keys/submit', methods=['POST'])
 @login_required
 def submit():
+  """ Return submit complete template """
   value = request.form['ssh_key']
   user_name = g.user
   d = dict(user_name=user_name)
